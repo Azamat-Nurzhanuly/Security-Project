@@ -12,14 +12,20 @@ public class AccessControl : MonoBehaviour {
     public const int ACCESS_DENIED = 3;
     public const int APPROVED = 4;
 
+    public bool doorClosed;
+    public bool enteredInCor;
+
     [SerializeField]
     private Light indicator;
 
     [SerializeField]
-    private Light sun;
+    public Light sun;
 
     [SerializeField]
-    private Light elum;
+    public Light elum;
+
+    [SerializeField]
+    public Light point;
 
     [SerializeField]
     private Collider player;
@@ -36,8 +42,10 @@ public class AccessControl : MonoBehaviour {
         entered = OUT_OF_THE_AREA;
         period = 0.5f;
         indicator.color = stable;
+        doorClosed = true;
 
         _instance = this;
+        enteredInCor = false;
     }
 
     IEnumerator flash()
@@ -97,9 +105,15 @@ public class AccessControl : MonoBehaviour {
                 break;
 
             case APPROVED:
+                if (enteredInCor)
+                {
+                    break;
+                }
                 indicator.color = approved;
                 indicator.gameObject.SetActive(true);
                 doorAnimator.SetBool("Open", true);
+                doorClosed = false;
+                enteredInCor = true;
                 StartCoroutine(closeTheDoor());
                 break;
 
@@ -109,6 +123,8 @@ public class AccessControl : MonoBehaviour {
                 indicator.range = 10f;
                 sun.gameObject.SetActive(false);
                 elum.gameObject.SetActive(false);
+                point.color = accessDenied;
+                StartCoroutine(alarm(false));
                 break;
             
             default:
@@ -119,7 +135,29 @@ public class AccessControl : MonoBehaviour {
 
     IEnumerator closeTheDoor()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(2f);
         doorAnimator.SetBool("Open", false);
+        StartCoroutine(check());
+    }
+
+    IEnumerator check()
+    {
+        yield return new WaitForSeconds(2.5f);
+        doorClosed = true;
+    }
+
+    public IEnumerator alarm(bool t) {
+    
+        while (true)
+        {
+            indicator.gameObject.SetActive(!indicator.gameObject.active);
+            if (t)
+            {
+                point.color = accessDenied;
+                sun.gameObject.SetActive(false);
+                point.gameObject.SetActive(!point.gameObject.active);    
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

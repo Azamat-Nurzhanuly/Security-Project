@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{099ED705-B624-BC8E-747F-FCDFD19D4373}</ProjectGuid>
+    <ProjectGuid>{196EEEE3-181E-D1B7-EA0F-B26857BB9673}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AccessControl.cs" />
+     <Compile Include="Assets\AccessControllerSecondDoor.cs" />
+     <Compile Include="Assets\CardRetriever.cs" />
      <Compile Include="Assets\MakeCardAction.cs" />
      <Compile Include="Assets\Scripts\FirstDoorCheck.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\ApplicationManager.cs" />
@@ -72,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{7A2F63F8-CD9A-C0B8-A2C8-3ED22531E690}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{A0EEF42A-C278-2A19-738C-69FE917E349C}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

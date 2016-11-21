@@ -11,11 +11,13 @@ public class SwitchPlayer : MonoBehaviour {
     public const int EMPLOYEE = 1;
     public const int BURGLAR = 2;
 
-    [SerializeField]
-    private RawImage burglar;
+    public const float EMPLOYEE_WEIGHT = 80.5f;
+    public const float BURGLAR_WEIGHT = 100.10f;
 
-    [SerializeField]
-    private RawImage employee;
+    public float weight;
+
+    public RawImage burglar;
+    public RawImage employee;
 
     void Start()
     {
@@ -30,12 +32,15 @@ public class SwitchPlayer : MonoBehaviour {
             burglar.gameObject.SetActive(false);
 
             player = EMPLOYEE;
+            weight = EMPLOYEE_WEIGHT;
         }
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
             employee.gameObject.SetActive(false);
             burglar.gameObject.SetActive(true);
+
+            weight = BURGLAR_WEIGHT;
 
             player = BURGLAR;
         }

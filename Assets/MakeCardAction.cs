@@ -47,6 +47,8 @@ public class MakeCardAction : MonoBehaviour {
             }
                     
             cardAnimator.SetBool("enter", true);
+            SwitchPlayer._instance.burglar.gameObject.SetActive(false);
+            SwitchPlayer._instance.employee.gameObject.SetActive(false);
 
             if (SwitchPlayer._instance.player == SwitchPlayer.EMPLOYEE)
             {
